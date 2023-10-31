@@ -14,7 +14,8 @@ function DownloadBtn({ data = [], fileName }) {
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Document1');
         XLSX.writeFile(workbook, fileName ? `${fileName}.xlsx` : 'data.xlsx');
       }}
-      className="download-btn cursor-pointer"
+      className="bg-blue-600 hover:bg-gray-200 hover:text-indigo-600 fill-white hover:fill-indigo-600 px-4 py-2 
+      flex text-white items-center gap-2 cursor-pointer"
     >
       <HiDownload fontSize={20} />
       Download

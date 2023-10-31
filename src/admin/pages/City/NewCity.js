@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-// import axios from "axios";
-// import { toast } from "react-toastify";
-// import { useNavigate } from "react-router-dom";
-// import Spinner from "../../../components/spinner";
-
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom"; 
+import Spinner from "../../../components/spinner";
+const BASE_URL = "http://localhost:8001/cities"
 function NewCity() {
   const [cityData, setCityData] = useState({
     cityName: "",
     suburb: ""
   });
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const { cityName, suburb } = cityData;
   const SuburbSelector = () => {
     const data = [
@@ -78,15 +80,27 @@ function NewCity() {
       [e.target.name]: e.target.value
     }));
   };
-  const onAddNewTable = () => {
-    console.log(cityData);
+  const onAddNewTable = async () => {
+    if(suburb, cityName) {
+      setLoading(false);
+      const newList = {
+        city: cityName,
+        suburb: suburb
+      }
+      await axios.post(`${BASE_URL}`, newList);
+      toast.success("City added successfully!");
+      navigate("/cities");
+    } else {
+      toast.error("Unable to add any table");
+      setLoading(false)
+    }
   };
   return (
     <div className="flex flex-col max-w-md h-lg mx-auto shadow-xl rounded-md mt-5 overflow-hidden">
       <div className="bg-blue-500 text-white w-full py-0 px-5">
         <h1 className="text-2xl font-medium">Add a City</h1>
       </div>
-      <form className="w-full px-5 flex flex-col justify-start">
+      {loading ? <Spinner small={false}/> :<form className="w-full px-5 flex flex-col justify-start">
         <div className="my-3">
           <label htmlFor="cityName" className="flex flex-col">
             City Name:
@@ -114,7 +128,7 @@ function NewCity() {
         >
           Add
         </button>
-      </form>
+      </form>}
     </div>
   );
 }

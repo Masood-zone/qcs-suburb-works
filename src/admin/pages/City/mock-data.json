@@ -1,52 +1,59 @@
-[
-  {
-    "id": 1,
-    "cities": "Stebnyk",
-    "suburb": "Chive"
-  },
-  {
-    "id": 2,
-    "cities": "Si Somdet",
-    "suburb": "Springview"
-  },
-  {
-    "id": 3,
-    "cities": "Caper",
-    "suburb": "Rutledge"
-  },
-  {
-    "id": 4,
-    "cities": "Uummannaq",
-    "suburb": "Kensington"
-  },
-  {
-    "id": 5,
-    "cities": "Eksjö",
-    "suburb": "Waywood"
-  },
-  {
-    "id": 6,
-    "cities": "Bahe",
-    "suburb": "Mallard"
-  },
-  {
-    "id": 7,
-    "cities": "Saint John’s",
-    "suburb": "Packers"
-  },
-  {
-    "id": 8,
-    "cities": "Bali",
-    "suburb": "Cambridge"
-  },
-  {
-    "id": 9,
-    "cities": "Fort Smith",
-    "suburb": "Brown"
-  },
-  {
-    "id": 10,
-    "cities": "Nkandla",
-    "suburb": "Katie"
-  }
-]
+{
+  "cities": [
+    {
+      "id": 1,
+      "city": "Stebnyk",
+      "suburb": "Chive"
+    },
+    {
+      "id": 2,
+      "city": "Si Somdet",
+      "suburb": "Springview"
+    },
+    {
+      "id": 3,
+      "city": "Caper",
+      "suburb": "Rutledge"
+    },
+    {
+      "id": 4,
+      "city": "Uummannaq",
+      "suburb": "Kensington"
+    },
+    {
+      "id": 5,
+      "city": "Eksjö",
+      "suburb": "Waywood"
+    },
+    {
+      "id": 6,
+      "city": "Bahe",
+      "suburb": "Mallard"
+    },
+    {
+      "id": 7,
+      "city": "Saint John’s",
+      "suburb": "Packers"
+    },
+    {
+      "id": 8,
+      "city": "Bali",
+      "suburb": "Cambridge"
+    },
+    {
+      "id": 9,
+      "city": "Fort Smith",
+      "suburb": "Brown"
+    },
+    {
+      "id": 10,
+      "city": "Nkandla",
+      "suburb": "Katie"
+    },
+    {
+      "city": "Assin Fosu",
+      "suburb": "Schmedeman",
+      "id": 11
+    }
+  ]
+}

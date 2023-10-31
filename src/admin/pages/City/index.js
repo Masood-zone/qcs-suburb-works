@@ -1,64 +1,78 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 import {
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  useReactTable
-} from "@tanstack/react-table";
+    flexRender,
+    getCoreRowModel,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    useReactTable
+} from '@tanstack/react-table';
 
-import axios from "axios";
+import axios from 'axios';
 
-import { HiOutlinePlusCircle, HiSearch, HiX } from "react-icons/hi";
+import { HiOutlinePlusCircle, HiSearch, HiX } from 'react-icons/hi';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import Container from "../../../components/pagination/Container";
+import Container from '../../../components/pagination/Container';
 
-import Button from "../../../components/pagination/Button";
+import Button from '../../../components/pagination/Button';
 
-import Input from "../../../components/pagination/Input";
+import Input from '../../../components/pagination/Input';
 
-import PageCount from "../../../components/pagination/PageCount";
+import PageCount from '../../../components/pagination/PageCount';
 
-import PageSelect from "../../../components/pagination/PageSelect";
+import PageSelect from '../../../components/pagination/PageSelect';
 
-import DownloadBtn from "../../../components/downloadBtn";
+import DownloadBtn from '../../../components/downloadBtn';
 
-import DebounceInput from "../../../components/debounceInput";
+import DebounceInput from '../../../components/debounceInput';
 
-import Spinner from "../../../components/spinner";
+import Spinner from '../../../components/spinner';
 
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-import columns from "./data";
+import columns from './data';
 
-function City() {
-  const [data, setData] = useState([]);
+const SUBURB_URL = "http://localhost:8001/cities"
 
-  const [globalFilter, setGlobalFilter] = useState("");
+function Suburbs() {
+    const [data, setData] = useState(() => []);
 
-  const handleDelete = (id) => {
-    const newArr = data.filter((prv) => prv.id !== id);
-    setData(newArr);
-  };
+    const [globalFilter, setGlobalFilter] = useState('');
 
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    state: {
-      globalFilter
-    },
-    getFilteredRowModel: getFilteredRowModel()
-  });
+    const [isLoading, setIsLoading] = useState(true);
 
-  return (
-    <div className="w-full m-auto">
+    useEffect(() => {
+        const fetchTableData = async () => {
+            const result = await axios(`${SUBURB_URL}`);
+            setData(result.data);
+            setIsLoading(false);
+        };
+        fetchTableData();
+    }, []);
+
+    const handleDelete = async id => {
+        await axios.delete(`http://localhost:8001/cities/${id}`);
+        const newArr = data.filter(prv => prv.id !== id);
+        setData(newArr);
+    };
+
+    const table = useReactTable({
+        data,
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
+        state: {
+            globalFilter
+        },
+        getFilteredRowModel: getFilteredRowModel(),
+    });
+
+    return (
+      <div className="w-full m-auto mt-5">
       <div className="w-full flex items-center justify-center flex-wrap py-[30px]">
-        <div className="w-[1170px] ">
+        <div className="container">
           {/* Search records */}
 
           <div className="w-full m-auto">
@@ -79,15 +93,14 @@ function City() {
           </div>
 
           {/* Table */}
-
-          <table className="bg-white rounded-xl overflow-hidden w-full m-auto relative border-collapse border-spacing-1">
-            <thead className="bg-[#36304a] h-[60px]">
+          <table className="bg-white rounded-xl overflow-hidden w-full m-auto relative border-collapse border-spacing-1 ">
+            <thead className="bg-neutral-600 h-[60px]">
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id} className="">
                   {headerGroup.headers.map((header) => (
                     <th
                       key={header.id}
-                      className="pl-[8px] text-white leading-[1.5] text-[18px] text-left"
+                      className="pl-[8px] leading-[1.5] text-[18px] text-left"
                     >
                       {flexRender(
                         header.column.columnDef.header,
@@ -98,7 +111,7 @@ function City() {
                   ))}
 
                   <th className="text-left">
-                    <div className="text-white font-bold py-4">Delete</div>
+                    <div className=" font-bold py-4">Delete</div>
                   </th>
                 </tr>
               ))}
@@ -128,7 +141,7 @@ function City() {
                     <td>
                       <button
                         type="submit"
-                        className="py-3"
+                        className="py-3 text-red-700"
                         onClick={() => handleDelete(row.original.id)}
                       >
                         <HiX fontSize={28} />
@@ -137,8 +150,8 @@ function City() {
                   </tr>
                 ))
               ) : (
-                <tr className="text-center h-32 text-black">
-                  <td colSpan={12}>{!data && <p>No records found.</p>}</td>
+                <tr className="text-left h-32 text-black">
+                  <td colSpan={12}>{isLoading ? <Spinner small/>: <p>No records found.</p>}</td>
                 </tr>
               )}
             </tbody>
@@ -202,7 +215,7 @@ function City() {
         </div>
       </div>
     </div>
-  );
+    );
 }
 
-export default City;
+export default Suburbs;

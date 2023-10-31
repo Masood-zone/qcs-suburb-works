@@ -4,14 +4,14 @@ import { HiPencilAlt } from "react-icons/hi";
 const columnHelper = createColumnHelper();
 
 const columns = [
-  columnHelper.accessor("suburb", {
-    header: "Suburb",
+  columnHelper.accessor("city", {
+    header: "City",
     meta: {
       type: "text"
     }
   }),
-  columnHelper.accessor("cities", {
-    header: "City",
+  columnHelper.accessor("suburb", {
+    header: "Suburb",
     meta: {
       type: "text"
     }
