@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "cities": "Stebnyk",
+    "suburb": "Chive"
+  },
+  {
+    "id": 2,
+    "cities": "Si Somdet",
+    "suburb": "Springview"
+  },
+  {
+    "id": 3,
+    "cities": "Caper",
+    "suburb": "Rutledge"
+  },
+  {
+    "id": 4,
+    "cities": "Uummannaq",
+    "suburb": "Kensington"
+  },
+  {
+    "id": 5,
+    "cities": "Eksjö",
+    "suburb": "Waywood"
+  },
+  {
+    "id": 6,
+    "cities": "Bahe",
+    "suburb": "Mallard"
+  },
+  {
+    "id": 7,
+    "cities": "Saint John’s",
+    "suburb": "Packers"
+  },
+  {
+    "id": 8,
+    "cities": "Bali",
+    "suburb": "Cambridge"
+  },
+  {
+    "id": 9,
+    "cities": "Fort Smith",
+    "suburb": "Brown"
+  },
+  {
+    "id": 10,
+    "cities": "Nkandla",
+    "suburb": "Katie"
+  }
+]
